@@ -1,7 +1,7 @@
 clear
 %% Load Word Lists
 iphod = readtable('IPhOD2_Words.txt');
-exclude = readmatrix('GP_exclude.csv','OutputType','string');
+exclude = readmatrix('CMU_exclude.csv','OutputType','string');
 heteronym = readmatrix('CMU_heteronym.csv','OutputType','string');
 over = readmatrix('CMU_overwrite.csv','OutputType','string');
 CMU = readmatrix('CMU_dict.txt','Delimiter','  ','OutputType','string');
