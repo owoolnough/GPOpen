@@ -1,9 +1,10 @@
-function graphemes = NGparser(words)
+function graphemes = NGparser(words,weighting)
 %% Naive Grapheme Parser
 % Author: Oscar Woolnough (owoolnough.github.io)
 % Version 1.0 (28 July 2023)
 %
 % Inputs: words - nx1 string array of words (e.g. "DICTIONARY")
+%         weighting - GP weighting to use {'none' (default) 'freq'} (optional)
 %
 % Outputs: graphemes - nx1 cell array of graphemes
 %
@@ -13,15 +14,26 @@ function graphemes = NGparser(words)
 assert(isstring(words),'Inputs must be string arrays')
 
 %% Load Grapheme-Phoneme Correspondence Table
-load('GG_prob.mat','dubgraphlist','GGprobS');
+if ~exist('weighting','var')
+    weighting = 'none';
+end
 
-ind = GGprobS<0.5;
+switch weighting
+    case 'none'
+        load('GG_prob.mat','dubgraphlist','GGprobS');
+        GP = GGprobS;
+    case 'freq'
+        load('GG_prob.mat','dubgraphlist','GGfreqS');
+        GG = GGfreqS;
+end
+
+ind = GG<0.5;
 dubgraphlist(ind) = [];
-GGprobS(ind) = [];
+GG(ind) = [];
 
-[~,I] = sortrows([strlength(dubgraphlist); GGprobS]','descend');
+[~,I] = sortrows([strlength(dubgraphlist); GG]','descend');
 dubgraphlist = dubgraphlist(I);
-GGprobS = GGprobS(I);
+
 %%
 graphemes = cell(length(words),1);
 for ii = 1:length(words)
