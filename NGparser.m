@@ -21,7 +21,7 @@ end
 switch weighting
     case 'none'
         load('GG_prob.mat','dubgraphlist','GGprobS');
-        GP = GGprobS;
+        GG = GGprobS;
     case 'freq'
         load('GG_prob.mat','dubgraphlist','GGfreqS');
         GG = GGfreqS;
