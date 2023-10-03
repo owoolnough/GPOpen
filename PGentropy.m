@@ -95,14 +95,14 @@ if ~isempty(graphemes)
             ind1 = strcmp(full(ii,kk),phonlist);
             ind2 = strcmp(fullg(ii,kk),graphlist);
             if ~contains(weighting,'pos')
-                surprisal(ii,kk) = -log2(PG(ind1,ind2));
+                surprisal(ii,kk) = -log2(PG(ind2,ind1));
             else
                 if kk == 1
-                    surprisal(ii,kk) = -log2(PG(ind1,ind2,1));
+                    surprisal(ii,kk) = -log2(PG(ind2,ind1,1));
                 elseif kk == sum(~strcmp(full(ii,:),''))
-                    surprisal(ii,kk) = -log2(PG(ind1,ind2,3));
+                    surprisal(ii,kk) = -log2(PG(ind2,ind1,3));
                 else
-                    surprisal(ii,kk) = -log2(PG(ind1,ind2,2));
+                    surprisal(ii,kk) = -log2(PG(ind2,ind1,2));
                 end
             end
         end
