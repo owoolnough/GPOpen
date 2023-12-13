@@ -19,7 +19,7 @@ This script uses the graphemes and phonemes calculated by GPparser to calculate 
 [entropy,pprob,surprisal] = PGentropy(phonemes,graphemes,weighting);
 
 ### NGparser.m ###
-This script attempts to parse words into graphemes without knowing their phonology. This uses the probabilities of occurence of multi-letter graphemes calculated from GPparser.
+This script attempts to parse words into graphemes without knowing their phonology. This uses the probabilities of occurence of multi-letter graphemes from a corpus of 33k words.
 
 ## Data Files ##
 ### GraphemePhoneme.csv ###
